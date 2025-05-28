@@ -12,9 +12,9 @@ export class TodoItemComponent {
   @Input()
   todo?: Todo;
 
-  onRichiestaCompletamento = output<number>();
+  onRichiestaCompletamento = output<number>(); // creo il dispositivo che può generare eventi
 
   richiediCompletamento() {
-    this.onRichiestaCompletamento.emit(this.todo!.id);
+    this.onRichiestaCompletamento.emit(this.todo!.id); // genero l'evento
   }
 }
