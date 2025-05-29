@@ -3,8 +3,18 @@
   <span [ngClass]="{ 'text-decoration-line-through': todo.completed }">{{
     todo.text
   }}</span>
-  <button type="button" class="btn btn-success">
-    <i class="bi bi-check"></i>
+  <button
+    type="button"
+    class="btn"
+    [ngClass]="{
+      'btn-success': !todo.completed,
+      'btn-secondary': todo.completed
+    }"
+    (click)="richiediCompletamento()"
+  >
+    @if (todo.completed) {
+    <i class="bi bi-x"></i> Rispristina } @else {
+    <i class="bi bi-check"></i> Completa }
   </button>
 </div>
 }
