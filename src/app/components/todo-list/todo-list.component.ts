@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Todo } from '../../models/todo';
-import { TODOS } from '../../data/todos';
+// import { TODOS } from '../../data/todos';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 import { TodoAddComponent } from "../todo-add/todo-add.component";
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,10 +12,19 @@ import { TodoAddComponent } from "../todo-add/todo-add.component";
   styleUrl: './todo-list.component.css'
 })
 export class TodoListComponent implements OnInit {
+
+  // alternativa 1 per richiedere un servizio
+  // constructor(private todoService: TodoService) {
+
+  // }
+
+  // alternativa 2 per richiedere un servizio
+  todoService: TodoService = inject(TodoService);
+
   todos: Todo[] = [];
 
   ngOnInit(): void {
-    this.todos = TODOS; // qui ci sarà la chiamata ajax
+    this.todos = this.todoService.getTodos(); // qui ci sarà la chiamata ajax
   }
 
   completa(id: number) {
